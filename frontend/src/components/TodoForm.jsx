@@ -45,7 +45,9 @@ const TodoForm = ({ isOpen, onClose, onSubmit, editingTodo = null }) => {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
       <div className="bg-gray-50 rounded-lg shadow-xl w-full max-w-md">
         <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-lg font-semibold text-gray-900">할 일 수정</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            {editingTodo ? "할 일 수정" : "새 할 일 추가"}
+          </h2>
           <button
             className="text-gray-400 hover:text-gray-600 transition-colors"
             onClick={onClose}
@@ -85,19 +87,21 @@ const TodoForm = ({ isOpen, onClose, onSubmit, editingTodo = null }) => {
             />
           </div>
 
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              name="completed"
-              id="completed"
-              checked={formData.completed}
-              onChange={handleChange}
-              className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-            />
-            <label htmlFor="completed" className="ml-2 text-sm text-gray-700">
-              완료됨
-            </label>
-          </div>
+          {editingTodo && (
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="completed"
+                id="completed"
+                checked={formData.completed}
+                onChange={handleChange}
+                className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+              />
+              <label htmlFor="completed" className="ml-2 text-sm text-gray-700">
+                완료됨
+              </label>
+            </div>
+          )}
 
           <div className="flex gap-3 pt-4">
             <button
@@ -111,7 +115,8 @@ const TodoForm = ({ isOpen, onClose, onSubmit, editingTodo = null }) => {
               type="submit"
               className="btn-primary flex-1 flex items-center justify-center gap-2"
             >
-              <Save size={16} /> 수정
+              <Save size={16} />
+              {editingTodo ? "수정" : "추가"}
             </button>
           </div>
         </form>
