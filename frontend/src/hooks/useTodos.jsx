@@ -44,6 +44,18 @@ const useTodos = () => {
     }
   };
 
+  const deleteTodo = async (id) => {
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    try {
+      await todoApi.deleteTodo(id);
+      await loadTodos();
+      await loadStats();
+    } catch (err) {
+      console.error("Error deleting todo:", err);
+    }
+  };
+
   useEffect(() => {
     loadTodos();
     loadStats();
@@ -54,6 +66,7 @@ const useTodos = () => {
     stats,
     toggleTodo,
     updateTodo,
+    deleteTodo,
   };
 };
 

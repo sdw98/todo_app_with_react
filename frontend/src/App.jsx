@@ -9,7 +9,7 @@ const App = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingTodo, setEditingTodo] = useState(null);
 
-  const { todos, stats, toggleTodo, updateTodo } = useTodos();
+  const { todos, stats, toggleTodo, updateTodo, deleteTodo } = useTodos();
 
   const handleUpdateTodo = async (todoData) => {
     await updateTodo(editingTodo.id, todoData);
@@ -35,6 +35,7 @@ const App = () => {
             todos={todos}
             onToggle={toggleTodo}
             onEdit={handleEditTodo}
+            onDelete={deleteTodo}
           />
         </ul>
 

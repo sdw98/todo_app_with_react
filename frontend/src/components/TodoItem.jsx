@@ -1,6 +1,6 @@
 import { Check, Clock, Edit, Trash2 } from "lucide-react";
 
-const TodoItem = ({ todo, onToggle, onEdit }) => {
+const TodoItem = ({ todo, onToggle, onEdit, onDelete }) => {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("ko-KR", {
       year: "numeric",
@@ -57,7 +57,10 @@ const TodoItem = ({ todo, onToggle, onEdit }) => {
           >
             <Edit size={16} />
           </button>
-          <button className="p-2 text-gray-400 hover:text-red-600 transition-colors duration-200">
+          <button
+            className="p-2 text-gray-400 hover:text-red-600 transition-colors duration-200"
+            onClick={() => onDelete(todo.id)}
+          >
             <Trash2 size={16} />
           </button>
         </div>
